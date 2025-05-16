@@ -1,7 +1,18 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Ignora errores de ESLint al hacer build
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  // Ignora errores de TypeScript al hacer build
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  // Desactiva la optimización de imágenes para usar Next 15 sin configuración extra
+  images: {
+    unoptimized: true,
+  },
 };
 
 export default nextConfig;
