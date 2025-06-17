@@ -1,7 +1,15 @@
+"use client"
+
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
+import { useState } from "react"
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+import Lightbox from "yet-another-react-lightbox"
+import "yet-another-react-lightbox/styles.css"
 import { projects } from "@/app/data/projects"
 
 export async function generateStaticParams() {
@@ -16,6 +24,9 @@ export default function ProjectPage({
   const project = projects[params.id]
   if (!project) return notFound()
 
+  const images = project.images ?? [project.image]
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+
   return (
     <div className="space-y-8">
       <Link
@@ -25,14 +36,38 @@ export default function ProjectPage({
         <ArrowLeft size={16} /> Volver a proyectos
       </Link>
 
-      <div className="relative h-80 rounded overflow-hidden">
-        <Image
-          src={project.image}
-          alt={project.title}
-          fill
-          className="object-cover"
-        />
-      </div>
+      {images.length > 0 && (
+        <Slider
+          dots
+          infinite
+          slidesToShow={1}
+          slidesToScroll={1}
+          className="rounded-md overflow-hidden"
+        >
+          {images.map((src, idx) => (
+            <div
+              key={idx}
+              className="relative h-80 cursor-pointer"
+              onClick={() => setLightboxIndex(idx)}
+            >
+              <Image
+                src={src}
+                alt={`${project.title} imagen ${idx + 1}`}
+                fill
+                className="object-cover"
+              />
+            </div>
+          ))}
+        </Slider>
+      )}
+
+      <Lightbox
+        open={lightboxIndex !== null}
+        index={lightboxIndex ?? 0}
+        close={() => setLightboxIndex(null)}
+        slides={images.map((src) => ({ src }))}
+        carousel={{ finite: false }}
+      />
 
       <div className="prose prose-invert">
         <h1>{project.title}</h1>

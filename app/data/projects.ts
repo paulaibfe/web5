@@ -11,6 +11,7 @@ export interface Project {
   tools?: string[]
   technologies: string[]      // ← lo añado aquí
   image: string
+  images?: string[]
 }
 
 export const projects: Record<string, Project> = {
@@ -27,6 +28,7 @@ export const projects: Record<string, Project> = {
     tools: ["Generación de imágenes con IA", "AutoCAD"],
     technologies: ["Sonido", "Instalación", "Arte Digital"], // ← aquí
     image: "/projects/fallen-equinox/imagen1.png",
+    images: ["/projects/fallen-equinox/imagen1.png"],
   },
   "sonidos-de-origen": {
     id: "sonidos-de-origen",
@@ -41,6 +43,7 @@ export const projects: Record<string, Project> = {
     tools: [],
     technologies: ["Audio", "Cultura", "Instalación"], // ← aquí
     image: "/projects/sonidos-de-origen/imagen1.png",
+    images: ["/projects/sonidos-de-origen/imagen1.png"],
   },
   "ecos-de-la-tierra": {
     id: "ecos-de-la-tierra",
@@ -52,6 +55,7 @@ export const projects: Record<string, Project> = {
     tools: ["Touchdesigner"],
     technologies: ["Sensores", "Ecología", "Sonido"], // ← aquí
     image: "/projects/ecos-de-la-tierra/imagen1.png",
+    images: ["/projects/ecos-de-la-tierra/imagen1.png"],
   },
   // …añade el resto igual, incluyendo siempre `technologies: [...]`…
 }
