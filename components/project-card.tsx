@@ -9,7 +9,7 @@ interface ProjectCardProps {
   technologies: string[]
 }
 
-export function ProjectCard({ id, title, description, image, technologies }: ProjectCardProps) {
+export default function ProjectCard({ id, title, description, image, technologies }: ProjectCardProps) {
   return (
     <Link href={`/projects/${id}`}>
       <div className="card-hover bg-card rounded-md overflow-hidden h-full flex flex-col">
