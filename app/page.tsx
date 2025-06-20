@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Terminal } from "@/components/terminal"
-import { ProjectCard } from "@/components/project-card"
+import ProjectCard from "@/components/project-card"
 import { BlogCard } from "@/components/blog-card"
 import { ArrowRight, MessageSquare } from "lucide-react"
 import { ChatInterface } from "@/components/chat-interface"

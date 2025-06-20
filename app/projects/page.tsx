@@ -1,7 +1,7 @@
 "use client"
 
 import { projects } from "@/app/data/projects"
-import ProjectCard from "@/app/components/project-card"  // ← ruta corregida
+import ProjectCard from "@/components/project-card"
 
 export default function ProjectsPage() {
   const featuredIDs = ["fallen-equinox", "sonidos-de-origen", "ecos-de-la-tierra"]
