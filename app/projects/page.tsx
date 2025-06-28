@@ -1,29 +1,27 @@
-"use client"
-
-import { projects } from "@/app/data/projects"
-import ProjectCard from "@/components/project-card"
+// app/projects/page.tsx
+import ProjectCard from "@/components/project-card";
+import { projects } from "../data/projects";
 
 export default function ProjectsPage() {
-  const featuredIDs = ["fallen-equinox", "sonidos-de-origen", "ecos-de-la-tierra"]
-  const featuredProjects = featuredIDs
+  const featured = ["fallen-equinox", "sonidos-de-origen", "ecos-de-la-tierra"]
     .map((id) => projects[id])
-    .filter(Boolean)
+    .filter(Boolean);
 
   return (
     <main className="space-y-8 py-12 bg-black text-white">
-      <h2 className="text-3xl font-mono">Proyectos Destacados</h2>
+      <h1 className="text-3xl font-mono">Proyectos Destacados</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {featuredProjects.map(({ id, title, description, image, technologies }) => (
+        {featured.map((p) => (
           <ProjectCard
-            key={id}
-            id={id}
-            title={title}
-            description={description}
-            image={image}
-            technologies={technologies}
+            key={p.id}
+            id={p.id}
+            title={p.title}
+            description={p.description}
+            image={p.image}
+            technologies={p.technologies}
           />
         ))}
       </div>
     </main>
-  )
+  );
 }
