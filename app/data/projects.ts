@@ -1,15 +1,17 @@
+// app/data/projects.ts
+
 export interface Project {
-  id: string
-  title: string
-  description: string
-  longDescription?: string
-  linkLabel?: string
-  linkUrl?: string
-  roles?: string[]
-  tools?: string[]
-  technologies: string[]
-  image: string
-  images?: string[]
+  id: string;
+  title: string;
+  description: string;
+  longDescription?: string;
+  linkLabel?: string;
+  linkUrl?: string;
+  roles?: string[];
+  tools?: string[];
+  technologies: string[];
+  image: string;
+  images?: string[];
 }
 
 export const projects: Record<string, Project> = {
@@ -17,11 +19,11 @@ export const projects: Record<string, Project> = {
     id: "fallen-equinox",
     title: "Fallen Equinox",
     description:
-      "Fallen Equinox es una experiencia diseñada para el lanzamiento de colección de Named Collective, donde la moda se convierte en ritual y el entorno en símbolo.",
-    longDescription: `Con una estética que combina lo gótico moderno...`,
+      "Fallen Equinox es una experiencia diseñada para el lanzamiento de colección…",
+    longDescription: `Aquí tu descripción larga…`,
     linkLabel: "Enlace presentación",
     linkUrl:
-      "https://www.canva.com/design/DAGjUptrQ-k/iRR-yicQu-evhegHzplPdQ/view?...",
+      "https://www.canva.com/design/DAGjUptrQ-k/iRR-yicQu-evhegHzplPdQ/view",
     roles: ["Art Direction", "Creativa", "Producción"],
     tools: ["Generación de imágenes con IA", "AutoCAD"],
     technologies: ["Sonido", "Instalación", "Arte Digital"],
@@ -35,12 +37,11 @@ export const projects: Record<string, Project> = {
   "sonidos-de-origen": {
     id: "sonidos-de-origen",
     title: "Sonidos de Origen",
-    description:
-      "Un festival que reinventa la música de raíz para una nueva generación.",
-    longDescription: `Sonidos de Origen nace en respuesta a una tendencia cultural...`,
+    description: "Un festival que reinventa la música de raíz…",
+    longDescription: `Aquí tu descripción larga…`,
     linkLabel: "Enlace presentación",
     linkUrl:
-      "https://www.canva.com/design/DAGiQO375UE/BxSPtxfz4oGN9zQNG0G1sg/view?...",
+      "https://www.canva.com/design/DAGiQO375UE/BxSPtxfz4oGN9zQNG0G1sg/view",
     roles: ["Art Direction", "Creativa", "Producción"],
     tools: [],
     technologies: ["Audio", "Cultura", "Instalación"],
@@ -55,9 +56,9 @@ export const projects: Record<string, Project> = {
     id: "ecos-de-la-tierra",
     title: "Ecos de la Tierra",
     description:
-      "Instalación interactiva que explora la conexión entre la naturaleza y la tecnología.",
-    longDescription: `Este ciclo de vida ilustra la fragilidad y la resiliencia...`,
-    roles: ["Art Direction", "Creativa", "Creación visuales", "Dirección músical"],
+      "Instalación interactiva que explora la conexión…",
+    longDescription: `Aquí tu descripción larga…`,
+    roles: ["Art Direction", "Creativa"],
     tools: ["Touchdesigner"],
     technologies: ["Sensores", "Ecología", "Sonido"],
     image: "/projects/ecos-de-la-tierra/imagen1.png",
@@ -67,5 +68,5 @@ export const projects: Record<string, Project> = {
       "/projects/ecos-de-la-tierra/imagen3.png",
     ],
   },
-  // …añade aquí el resto siguiendo este mismo patrón…
-}
+  // añade el resto siguiendo este patrón…
+};

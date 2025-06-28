@@ -1,16 +1,16 @@
-// app/projects/[id]/page.client.tsx
-"use client"
-
-import React from "react"
-import Slider from "react-slick"
-import Lightbox from "yet-another-react-lightbox"
-import Image from "next/image"
+// app/projects/[id]/Page.client.tsx
+"use client";
+import React, { useState } from "react";
+import Slider from "react-slick";
+import Lightbox from "yet-another-react-lightbox";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "yet-another-react-lightbox/styles.css";
 
 interface PageClientProps {
-  images: string[]
-  title: string
-  description: string
-  // …el resto de props que necesites
+  images: string[];
+  title: string;
+  description: string;
 }
 
 export default function PageClient({
@@ -18,39 +18,29 @@ export default function PageClient({
   title,
   description,
 }: PageClientProps) {
-  const [index, setIndex] = React.useState<number>(0)
-  const [open, setOpen] = React.useState(false)
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <>
-      <div className="space-y-4">
-        <h1 className="text-2xl font-bold">{title}</h1>
-        <p>{description}</p>
-      </div>
-
+    <div className="space-y-8">
+      <h1 className="text-2xl font-bold">{title}</h1>
       <Slider infinite dots slidesToShow={1} slidesToScroll={1}>
-  {images.map((src, i) => (
-    <div key={i} onClick={() => setIndex(i)} className="relative h-80">
-        <Image
-          src={src}
-          alt={`Imagen ${i + 1} de ${title}`}    // texto alternativo
-          fill
-         className="object-cover cursor-pointer"
-      />
-      </div>
-  ))}
-</Slider>
+        {images.map((src, i) => (
+          <div key={i} onClick={() => setOpenIndex(i)}>
+            <img src={src} alt={`${title} imagen ${i + 1}`} className="w-full h-80 object-cover" />
+          </div>
+        ))}
+      </Slider>
 
       <Lightbox
-        open={open}
-        index={index}
-        close={() => setOpen(false)}
+        open={openIndex !== null}
         slides={images.map((src) => ({ src }))}
+        index={openIndex || 0}
+        close={() => setOpenIndex(null)}
         carousel={{ finite: false }}
-        on={{
-          view: ({ index }) => setIndex(index),
-        }}
+        on={{ view: ({ index }) => setOpenIndex(index) }}
       />
-    </>
-  )
+
+      <p>{description}</p>
+    </div>
+  );
 }
