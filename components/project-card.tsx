@@ -7,7 +7,7 @@ interface ProjectCardProps {
   title: string;
   description: string;
   image: string;
-  technologies?: string[]; // opcional
+  technologies?: string[];         // opcional
 }
 
 export default function ProjectCard({
@@ -15,21 +15,26 @@ export default function ProjectCard({
   title,
   description,
   image,
-  technologies = [],     // por defecto array vacío
+  technologies = [],               // por defecto array vacío
 }: ProjectCardProps) {
   return (
-    <Link href={`/projects/${id}`}>
-      <a className="card-hover block bg-card rounded-md overflow-hidden h-full flex flex-col">
+    <Link href={`/projects/${id}`} legacyBehavior>
+      <a className="card-hover bg-card rounded-md overflow-hidden h-full flex flex-col">
         <div className="relative h-48">
           <Image
-            src={image}
-            alt={title}            // siempre hay alt
+            src={image || "/placeholder.svg"}
+            alt={title}
             fill
             className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
           <div className="absolute bottom-0 left-0 p-4">
-            <h3 className="text-lg font-bold text-white">{title}</h3>
+            <h3
+              className="text-lg font-bold text-white glitch"
+              data-text={title}
+            >
+              {title}
+            </h3>
           </div>
         </div>
         <div className="p-4 flex-1 flex flex-col">

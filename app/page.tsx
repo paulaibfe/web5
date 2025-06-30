@@ -1,3 +1,4 @@
+// app/page.tsx
 "use client"
 
 import { useState } from "react"
@@ -8,33 +9,18 @@ import { BlogCard } from "@/components/blog-card"
 import { ArrowRight, MessageSquare } from "lucide-react"
 import { ChatInterface } from "@/components/chat-interface"
 
+// Importamos los proyectos definidos en app/data/projects.ts
+import { projects } from "@/app/data/projects"
+
 export default function Home() {
   const [introComplete, setIntroComplete] = useState(false)
   const [showChat, setShowChat] = useState(false)
 
-  const featuredProjects = [
-    {
-      id: "fallen-equinox",
-      title: "Fallen Equinox",
-      description: "Experiencia inmersiva que combina arte digital y sonido para crear un ambiente único.",
-      image: "/placeholder.svg?height=400&width=600",
-      technologies: ["Eventos", "Sonido", "Instalación"],
-    },
-    {
-      id: "ecos-de-la-tierra",
-      title: "Ecos de la Tierra",
-      description: "Instalación interactiva que explora la conexión entre la naturaleza y la tecnología.",
-      image: "/placeholder.svg?height=400&width=600",
-      technologies: ["Interactivo", "Ecología", "Sensores"],
-    },
-    {
-      id: "deep-end-skatepark",
-      title: "Deep End Skatepark",
-      description: "Diseño de interiores para un skatepark urbano que fusiona funcionalidad y estética contemporánea.",
-      image: "/placeholder.svg?height=400&width=600",
-      technologies: ["Interiores", "Diseño", "Urbano"],
-    },
-  ]
+  // Seleccionamos únicamente los tres destacados que queremos mostrar
+  const featuredIds = ["sonidos-de-origen", "formentera", "serenates"]
+  const featuredProjects = featuredIds
+    .map((id) => projects[id])
+    .filter(Boolean)
 
   const latestPosts = [
     {
@@ -58,16 +44,12 @@ export default function Home() {
     "Iluminación",
   ]
 
-  const handleChatClick = () => {
-    setShowChat(true)
-  }
-
-  const handleCloseChat = () => {
-    setShowChat(false)
-  }
+  const handleChatClick = () => setShowChat(true)
+  const handleCloseChat = () => setShowChat(false)
 
   return (
     <div className="space-y-16">
+      {/* Sección de presentación */}
       <section className="py-12">
         <Terminal
           text="Hola, Mundo. Soy Paula Ibor. Aún estoy en proceso de definir exactamente mi rol profesional, pero me gusta identificarme como directora creativa de nuevos formatos y diseñadora de experiencias."
@@ -82,7 +64,7 @@ export default function Home() {
               onClick={handleChatClick}
               className="inline-flex items-center gap-2 bg-primary/10 hover:bg-primary/20 text-primary px-4 py-2 rounded-md transition-colors border border-primary/30"
             >
-              Conoce más sobre mi <MessageSquare size={16} />
+              Conoce más sobre mí <MessageSquare size={16} />
             </button>
 
             <Link
@@ -95,10 +77,14 @@ export default function Home() {
         )}
       </section>
 
+      {/* Sección de proyectos destacados */}
       <section>
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold">Proyectos Destacados</h2>
-          <Link href="/projects" className="text-primary hover:underline inline-flex items-center gap-1">
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-1 text-primary hover:underline"
+          >
             Ver todos <ArrowRight size={16} />
           </Link>
         </div>
@@ -110,6 +96,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Sección de especialidades */}
       <section>
         <h2 className="text-2xl font-bold mb-6">Especialidades</h2>
         <div className="terminal-window">
@@ -132,10 +119,14 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Sección de inspiración/blog */}
       <section>
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold">Inspiración</h2>
-          <Link href="/blog" className="text-primary hover:underline inline-flex items-center gap-1">
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-1 text-primary hover:underline"
+          >
             Ver todo <ArrowRight size={16} />
           </Link>
         </div>
